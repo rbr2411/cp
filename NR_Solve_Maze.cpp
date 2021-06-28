@@ -37,6 +37,32 @@ vector<int> & NR_Solve_Maze(vector<vector<int>> maze, int start , int finish, ve
     return path;
 }
 
+bool R_Solve_Maze(vector<vector<int>> maze, int start, int finish, unordered_set<int> & visited,
+vector<int> &path)
+{
+    if(start == finish)
+    {
+        path.insert(path.begin(), start);
+        return true;
+    }
+
+    visited.insert(start);
+    vector<int>:: iterator it = maze[start].begin();
+    while(it != maze[start].end())
+    {
+        if(visited.count(*it) == 0)
+        {
+            if(R_Solve_Maze(maze, *it, finish, visited, path))
+            {
+                path.insert(path.begin(), start);
+                return true;
+            }
+        }
+        it++;
+    }
+    return false;
+}
+
 int main()
 {
     vector<vector<int>> maze(9);
@@ -49,12 +75,19 @@ int main()
     maze[4].push_back(7);
     maze[7].push_back(8);
     vector<int> path;
-    NR_Solve_Maze(maze, 0, 8, path);
+    unordered_set<int> visited;
+    R_Solve_Maze(maze, 0, 8, visited, path);
+    // NR_Solve_Maze(maze, 0, 8, path);
 
+    if(path.size() == 0)
+    {
+        cout << "No possible path.\n";
+        return 0;
+    }
     for(int i = 0; i < path.size()-1; i++)
     {
         cout << path[i] << " ->";
     }
-    cout << " " << path[path.size()- 1];
+    cout << path[path.size()- 1] << endl;
     return 0;
 }
