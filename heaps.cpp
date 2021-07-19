@@ -27,5 +27,12 @@ int main()
     cout << min_pq.top() << endl;
     min_pq.pop();
     cout << min_pq.top() << endl;
+
+    priority_queue<int> my_pq;
+    my_pq.push(2);
+    my_pq.push(3);
+    my_pq.push(1);
+    cout << endl;
+    cout << my_pq.top() << endl;
     return 0;
 }
