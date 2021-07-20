@@ -13,6 +13,8 @@ int solve(string s, int i, int j, bool isTrue)
             return dp[i][j][isTrue] = (s[i] == 'T');
         else return dp[i][j][isTrue] = (s[i] == 'F');
     }
+    if(dp[i][j][isTrue] != -1)
+        return dp[i][j][isTrue];
     int ans = 0;
     for(int k = i+1; k <= j-1; k += 2)
     {
