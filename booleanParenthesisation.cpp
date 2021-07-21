@@ -10,7 +10,7 @@ int solve(string s, int i, int j, bool isTrue)
     if(i == j)
     {
         if(isTrue)
-            return dp[i][j][isTrue] = (s[i] == 'T');
+            return dp[i][j][isTrue] = (s[i] == 'T');    
         else return dp[i][j][isTrue] = (s[i] == 'F');
     }
     if(dp[i][j][isTrue] != -1)
